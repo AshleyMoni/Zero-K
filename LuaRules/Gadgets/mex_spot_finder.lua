@@ -168,6 +168,7 @@ function gadget:Initialize()
 					spot.metal = metalValueOverride
 				end
 				spot.metal = spot.metal*mult
+				spot.metal = math.floor(spot.metal*10 + 0.5) / 10 -- Round to nearest tenth
 				i = i + 1
 			else
 				metalSpots[i] = metalSpots[#metalSpots]
