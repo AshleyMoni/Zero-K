@@ -138,7 +138,7 @@ local PRESS_DRAG_THRESHOLD_SQR = 25^2
 local MINIMAP_DRAW_SIZE = math.max(mapX,mapZ) * 0.0145
 
 options_path = 'Settings/Interface/Map/Metal Spots'
-options_order = { 'drawicons', 'size', 'rounding', 'catlabel', 'area_point_command', 'catlabel_terra', 'wall_low', 'wall_high', 'burry_shallow', 'burry_deep'}
+options_order = { 'drawicons', 'size', 'catlabel', 'area_point_command', 'catlabel_terra', 'wall_low', 'wall_high', 'burry_shallow', 'burry_deep'}
 options = {
 	drawicons = {
 		name = 'Show Income as Icon',
@@ -158,18 +158,6 @@ options = {
 		step = 5,
 		update_on_the_fly = true,
 		advanced = true,
-		OnChange = function() updateMexDrawList() end
-	},
-	rounding = {
-		name = "Display decimal digits",
-		desc = "How precise should the number be?\nNo effect on icons.",
-		type = "number",
-		value = 1,
-		min = 1,
-		max = 4,
-		update_on_the_fly = true,
-		advanced = true,
-		tooltip_format = "%.0f", -- show 1 instead of 1.0 (confusion)
 		OnChange = function() updateMexDrawList() end
 	},
 	catlabel = {
@@ -1181,7 +1169,7 @@ DrawIncomeLabels = function()
 			glRotate(-90, 1, 0, 0)
 			glRotate(camDir, 0, 0, 1)
 			glTranslate(0, -40 - options.size.value, 0)
-			glText("+" .. ("%."..options.rounding.value.."f"):format(metal), 0.0, 0.0, options.size.value , "cno")
+			glText("+" .. ("%.1f"):format(metal), 0.0, 0.0, options.size.value , "cno")
 
 			glPopMatrix()
 		end
